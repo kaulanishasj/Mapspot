@@ -1,0 +1,102 @@
+<h1>Listing locations</h1>
+<div id="fb-root"></div>
+        <script src="http://connect.facebook.net/en_US/all.js"></script>
+       <!--  <p>
+              <input type="button"
+              onclick="sendRequestToOneRecipient(); return false;"
+              value="Send Request to One User"
+              />
+              <input type="text" value="User ID" name="user_id" />
+        </p> -->
+        
+        
+              <a href=# id="send_request_button" 
+              onclick="sendRequestToManyRecipients(); return false;"> Send Request to Your Facebook Freinds</a>
+         
+
+        <script>
+              FB.init({
+              appId : '266925696752524',
+              status : true,
+              cookie : true,
+              oauth: true
+              }); 
+
+              // to send request to many friends use this function
+              function sendRequestToManyRecipients() {
+              FB.ui({method: 'apprequests',
+              message: 'My Great Request',
+              }, requestCallback);
+              }
+
+              function requestCallback(response) {
+              // Handle callback here
+              }
+
+
+
+                // function sendRequestToOneRecipient() {
+                // var user_name = document.getElementsByName("user_name")[0].value;
+                // FB.ui({method: 'apprequests',
+                // message: 'My Great Request',
+                // to: user_name,
+                // }, requestCallback);
+                // } 
+        
+
+        </script>
+</body>
+</html> 
+
+    <table class="table table-bordered">
+      <tr>
+        <th>You were Here on/at :</th>
+       <th>Address</th>
+        <th>Longitude  </th>
+        <th>Latitude</th>
+       <th>OPTIONS   </th>    
+
+      </tr>
+
+    <% @locations.each do |location| %>
+      <tr>
+        <td><%= location.created_at%></td>
+        <td><%= location.address%></td> 
+        <td><%= location.longitude%></td>
+        <td><%= location.latitude   %></td>
+        
+        <td><%= link_to 'Edit', edit_user_location_path(@u , location) %>
+        <td><%= link_to 'Destroy', user_location_path(@u , location) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Hangout Places', user_location_path(@u,location) %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <br />
+
+    
+    <%= link_to 'New Location', new_user_location_path(@u.uid) %>
+  <br />
+     
+
+    <%= gmaps("map_options" => { "type" => "SATELLITE", "center_longitude" => 180, "zoom" => 3, "auto_adjust" => true},"markers" => { "data" => @json , "options" => {"list_container" => "markers_list" }}) %> 
+
+    <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:fb="https://www.facebook.com/2008/fbml">
+
+
+<head>
+</head>
+<body>
+
+        
+<h2>WANT TO KNOW WHERE YOUR FREINDS ARE?????..Click to Find out more  </h2>
+
+<ul id="markers_list">  </ul>
+<!--%= link_to 'My travelogues', user_travelogues_path(@u.uid) %>
+<%= link_to 'new new My travelogues', new_user_travelogue_path(@u.uid) %> -->
+
+
+
+
+

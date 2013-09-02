@@ -1,0 +1,33 @@
+<!-- <h1>Listing travelogues</h1>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Gmaps</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @travelogues.each do |travelogue| %>
+  <tr>
+    <td><%= travelogue.address %></td>
+    <td><%= travelogue.latitude %></td>
+    <td><%= travelogue.longitude %></td>
+    <td><%= travelogue.gmaps %></td>
+    <td><%= travelogue.user %></td>
+    <td><%= link_to 'Show', user_travelogue_path(@user , travelogue) %></td>
+    
+    <td><%= link_to 'Destroy', user_travelogue_path(@user , travelogue), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
+
+
+ -->

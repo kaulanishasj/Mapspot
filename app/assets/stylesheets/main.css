@@ -1,0 +1,18 @@
+
+#send_request_button {
+    background: purple ;
+    border: 1px solid #5C9C36;
+    color: #FFF;
+    display: inline-block;
+    font: bold 14px/1.1em sans-serif;
+    outline: none; padding: 8px 16px;
+    text-decoration: none;
+
+}
+#send_request_button:hover {
+    background: #0099CC;
+    color: #FFC;
+}
+
+
+

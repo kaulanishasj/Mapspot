@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GMap</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+ 
+  <%= javascript_include_tag "application" %>
+
+  <%= stylesheet_link_tag 'gmaps4rails' %>
+  <%= stylesheet_link_tag 'main' %>
+  <%= csrf_meta_tags %>
+     <%= yield :head %>
+  <style type="text/css">
+     img {
+        max-width: auto;
+     }
+  </style>
+</head>
+
+
+<body style="background-color:#DDDDDD;">
+
+
+ 
+
+<div class="navbar navbar-inverse navbar-fixed-top" id="user_nav">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+            
+
+              <% if current_user  %>
+              <li style="line-height: 40px;">Signed in as </li>
+              
+              <li>
+                <a href="#"> <strong><%= current_user.name %></strong></a>
+              </li>
+              <li>
+                <%= link_to "Sign out", signout_path, id: "sign_out" %>
+              </li>
+
+              <li>
+                <%= link_to "My home", user_locations_path(current_user.id)%>
+              </li>
+     
+  <% else %>
+  <li>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" , :class => "popup", :"data-width" => 600, :"data-height" => 400%>
+    </li>
+  <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+<div class="container" style="padding-top: 50px; left:20px">
+  <%= yield %>
+</div>
+
+
+
+ <% if current_user %>
+     <%= yield :scripts %>
+  <% end %>  
+
+</body>
+</html>
+
+   
+
+
+
+

@@ -1,4 +1,4 @@
-Mapspot
+MapSpot
 =======
 
-app to keep track of your frends, uses FB and google API
+Social Mapping, Find Nearby places

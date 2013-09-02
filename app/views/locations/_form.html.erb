@@ -1,0 +1,35 @@
+<%= form_for([@user,@location]) do |f| %>
+
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2> Please check if your location is correct. If correct click create location</h2>
+      
+    </div>
+    <strong><%= link_to "Not the location you were looking for? CLICK HERE", new_user_location_path(@user.uid)%></strong>
+  <% end %>
+
+  </br>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :gmaps %>
+    <%= f.check_box :gmaps %>
+  </div>
+
+
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

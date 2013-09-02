@@ -1,0 +1,64 @@
+
+<h2>ADD A NEW LOCATION</h2>
+<h3>Read The Instructions Carefully</h3>
+ <ul>
+      <p>You can create your Location manually by filling in the address field/ only the LATLONG fields</p>
+      <p>If you want to create by entering the Longitude and the Latitude of your current location then check the GMAPS field</p>
+      
+ </ul>
+
+<%= render 'form' %>
+<%= gmaps4rails(@json) %>
+<% content_for :scripts do %>
+   
+    <script type="text/javascript" charset="utf-8">
+        var markersArray = [];
+        
+        Gmaps.map.callback = function() {
+           alert("If creating a location using the map ..Click on the map to make the draggable marker appear")
+            google.maps.event.addListener(Gmaps.map.serviceObject, 'click', function(event) {
+              clearOverlays();
+              placeMarker(event.latLng);
+              updateFormLocation(event.latLng);
+            });
+        };
+        // Update form attributes with given coordinates
+        function updateFormLocation(latLng) {
+           $('#location_latitude').val(latLng.lat());
+            $('#location_longitude').val(latLng.lng());
+        }
+
+        // Add a marker with an open infowsindow
+        
+        function placeMarker(latLng) {
+            
+            var marker = new google.maps.Marker({
+                position: latLng, 
+                map: Gmaps.map.serviceObject,
+                draggable: true
+            });
+            markersArray.push(marker);
+            // Set and open infowindow
+            var infowindow = new google.maps.InfoWindow({
+                content: '<div class="popup"><h4>New Location</h4><p>Drag Me To Desired Location</p>'
+            });
+            infowindow.open(Gmaps.map.serviceObject,marker);
+            // Listen to drag & drop
+            google.maps.event.addListener(marker, 'dragend', function() {
+                updateFormLocation(this.getPosition());
+            });
+        }
+        // Removes the overlays from the map
+        function clearOverlays() {
+            
+          if (markersArray) {
+            for (var i = 0; i < markersArray.length; i++ ) {
+              markersArray[i].setMap(null);
+            }
+          }
+          markersArray.length = 0;
+        }
+    </script>
+<% end %>
+
+<%= link_to 'Back', user_locations_path %>

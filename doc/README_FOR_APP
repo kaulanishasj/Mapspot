@@ -1,0 +1,10 @@
+"Mapspot" is a Rails application that uses the Google Maps API and the Facebook API. There is no separate registration for this app, it uses one Facebook email id and password to generate a registration token. So if someone logs in for the first time  and he successfully enters the Application, he will automatically be registered in the database. At the time of log in The user will be required to allow the app to use the basic info of his Facebook account (like name and uid that Facebook has given to him as a resource to the Facebook web application). 
+
+Mapspot uses ruby gems like gmaps4rails , Omniauth-Facebook and Koala for presenting different functionalities provided by google maps API , for authenticating the user with his Facebook account and allowing the access to the users Facebook friends respectively.
+
+Using this app the user will be able to look at the latest locations of the Facebook Friends who are also using Mapspot along with the time at which they were spotted at that place. 
+
+Also, the user can switch the view of the map from a satellite view to a Map view(2D) in addition to the Zoom-in/Zoom-out options. The user can also invite his Facebook friends to this app and become a member of this app by log gin in to this app for the first time through Facebook.
+
+
+

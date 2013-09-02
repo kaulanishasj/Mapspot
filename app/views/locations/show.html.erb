@@ -1,0 +1,52 @@
+
+<p>
+  <b>Name:</b>
+  <%= @location.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @location.address %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @location.longitude %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @location.latitude %>
+</p>
+
+<h1>Some Hangout places which you can visit in this locality..</h1>
+ 
+ <%= gmaps4rails(@json) %>
+
+<%= link_to 'Back', user_locations_path %>
+
+<% content_for :scripts do %>
+    
+    <script type="text/javascript" charset="utf-8">
+        
+        alert("going in")
+        var marker = new google.maps.Marker({map: map, position: point, clickable: true});
+
+        marker.info = new google.maps.InfoWindow({
+        content: '<b>Speed:</b> ' + values.inst + ' knots'
+        
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+        marker.info.open(map, marker);
+        });
+        
+
+        
+       
+        
+    </script>
+<% end %>
+</br>
+<%= link_to "Hospitals only", hospitals_only_path %>
+ 

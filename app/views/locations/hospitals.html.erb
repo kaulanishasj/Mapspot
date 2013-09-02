@@ -1,0 +1,24 @@
+    
+<%= gmaps4rails(@json) %>
+
+
+
+
+    <% content_for :scripts do %>
+        
+        <script type="text/javascript" charset="utf-8">
+            
+            alert("going in")
+            var marker = new google.maps.Marker({map: map, position: point, clickable: true});
+
+            marker.info = new google.maps.InfoWindow({
+            content: '<b>Speed:</b> ' + values.inst + ' knots'
+            
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+            marker.info.open(map, marker);
+            });
+            
+        </script>
+    <% end %>
